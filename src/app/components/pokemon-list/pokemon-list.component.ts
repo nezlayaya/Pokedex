@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { SimplePokemon } from 'types/simple-pokemon.type';
 
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
@@ -24,6 +24,16 @@ import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item
                 @for (pokemon of pokemonList(); let index = $index; track pokemon.name) {
                     <app-pokemon-list-item [index]="$index" [pokemon]="pokemon" />
                 }
+
+                @if (hasMore()) {
+                    <button
+                        class="load-more-btn"
+                        [disabled]="isLoadingMore()"
+                        (click)="loadMore.emit()"
+                    >
+                        {{ isLoadingMore() ? '...' : 'Load more' }}
+                    </button>
+                }
             </section>
         </div>
 
@@ -31,7 +41,12 @@ import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item
     `,
     styleUrl: './pokemon-list.component.scss',
     imports: [PokemonListItemComponent],
+    standalone: true,
 })
 export class PokemonListComponent {
     readonly pokemonList = input<SimplePokemon[]>([]);
+    readonly hasMore = input<boolean>(false);
+    readonly isLoadingMore = input<boolean>(false);
+    readonly loadMore = output<void>();
+    public $index: number;
 }
