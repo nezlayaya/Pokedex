@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Output, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { SimplePokemon } from 'types/simple-pokemon.type';
 
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';

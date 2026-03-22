@@ -8,6 +8,7 @@ import { Component, computed, input } from '@angular/core';
         }
     `,
     styleUrl: './typewriter.component.scss',
+    standalone: true
 })
 export class TypewriterComponent {
     readonly text = input<string>(undefined);
