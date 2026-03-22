@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Pokemon } from 'types/pokemon.type';
+import type { Pokemon } from 'pokenode-ts';
 
 import { TypewriterComponent } from '../../typewriter/typewriter.component';
 
@@ -19,6 +19,7 @@ import { TypewriterComponent } from '../../typewriter/typewriter.component';
         </div>
     `,
     styleUrl: './pokemon-info.component.scss',
+    standalone: true
 })
 export class PokemonInfoComponent {
     readonly pokemonInfo = input<Pokemon>();

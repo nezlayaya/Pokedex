@@ -13,6 +13,7 @@ import { SimplePokemon } from 'types/simple-pokemon.type';
     `,
     styleUrl: './pokemon-list-item.component.scss',
     imports: [RouterLink, UpperCasePipe],
+    standalone: true
 })
 export class PokemonListItemComponent {
     readonly index = input.required<number>();
