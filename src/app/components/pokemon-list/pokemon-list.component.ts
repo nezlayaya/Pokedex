@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, input, Output, output } from '@angular/core';
 import { SimplePokemon } from 'types/simple-pokemon.type';
 
 import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item.component';
@@ -21,8 +21,8 @@ import { PokemonListItemComponent } from '../pokemon-list-item/pokemon-list-item
 
         <div class="section-wrapper">
             <section>
-                @for (pokemon of pokemonList(); let index = $index; track pokemon.name) {
-                    <app-pokemon-list-item [index]="$index" [pokemon]="pokemon" />
+                @for (pokemon of pokemonList(); track pokemon.name; let i = $index) {
+                    <app-pokemon-list-item [index]="i" [pokemon]="pokemon" />
                 }
 
                 @if (hasMore()) {
@@ -48,5 +48,4 @@ export class PokemonListComponent {
     readonly hasMore = input<boolean>(false);
     readonly isLoadingMore = input<boolean>(false);
     readonly loadMore = output<void>();
-    public $index: number;
 }
